@@ -1,0 +1,27 @@
+---
+title: "Academic and professional experience"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Education
+Columbia University, Mailman School of Public Health  
+Master of Public Health in Epidemiology  
+Certificate in Applied Biostatistics and Public Health Data Science  
+Sep. 2024 – May 2026
+
+University of California, Berkeley  
+Bachelor of Science in Molecular Environmental Biology  
+Minors in Data Science, Toxicology  
+Aug. 2019 – May 2023
+
+## Professional Experience
+Charles River Associates
+Associate Intern - Life Sciences
+New York, NY 
+June 2025 – Aug. 2025
+
+
+[Back to home](index.html)

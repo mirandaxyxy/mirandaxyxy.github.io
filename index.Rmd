@@ -1,0 +1,24 @@
+---
+title: "Miranda Chen"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+MPH Epidemiology @Columbia丨Ex-Intern @CRA丨Healthcare Data Analytics & Insights
+
+Greetings! I'm Miranda, a second year MPH Epidemiology student at Columbia University Mailman School of Public Health.
+My background includes a strong foundation in healthcare consulting and proficient quantitative analysis skills. I'm deeply passionate about leveraging data and technology to optimize healthcare strategies and improve patient outcomes.
+
+Let's connect!
+
+![](./headshot.jpg){width=200px}
+
+
+
+[Academic and professional experience](about.html)
+
+
+
+
+

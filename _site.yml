@@ -1,0 +1,17 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "My Experience"
+      href: about.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<xc2784@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/mirandaxyxy/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/miranda299
+      
+output:
+  html_document:
+    theme: cerulean
