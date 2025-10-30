@@ -1,0 +1,97 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+This dataset includes all days from 2009 and 2010 that had both snowfall and precipitation, and for which temperature values (tmax and tmin) are not missing.
+
+```{r}
+data("ny_noaa")
+
+noaa = ny_noaa %>% 
+  drop_na(tmax,tmin,snow,prcp) %>% 
+  mutate(tmax = as.numeric(tmax)/10, tmin = as.numeric(tmin)/10, prcp = as.numeric(prcp)/10) %>% 
+  filter(snow > 0 & prcp > 0 & year(date) >= 2009) %>% 
+  select(-snwd) 
+  
+
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+noaa %>% 
+  mutate(text_label = str_c("Precipitation: ", prcp, "\nSnowfall: ", snow, "\nMaximum temperature: ", tmax)) %>% 
+  plot_ly(
+    x = ~prcp, 
+    y = ~snow, 
+    type = "scatter", 
+    mode = "markers",
+    color = ~tmax, alpha = 0.5,text = ~text_label,colors = "viridis")%>%
+ layout(
+    title = "Snowfall vs. Precipitation by Maximum Temperature (2009–2010)",
+    xaxis = list(title = "Precipitation (mm)"),
+    yaxis = list(title = "Snowfall (mm)"),
+    colorbar = list(title = "Maximum Temperature (°C)")
+  )
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+noaa %>% 
+  mutate(month = month(date, label = TRUE),
+         text_label = str_c("Precipitation: ", prcp, "\nSnowfall: ", snow, "\nMaximum temperature: ", tmax)) %>% 
+  plot_ly(
+    x = ~month, 
+    y = ~snow, 
+    type = 'box',
+    color = ~month, alpha = 0.5,text = ~text_label,colors = "viridis")%>%
+ layout(
+    title = "Monthly Snowfall (2009–2010)",
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Snowfall (mm)"),
+    showlegend = FALSE
+  )
+```
+
+### Chart C
+
+```{r}
+noaa %>%
+  mutate(month = month(date, label = TRUE)) %>% 
+  mutate(year = year(date)) %>% 
+  count(month,year) %>%                            
+  plot_ly(
+    x = ~month,
+    y = ~n,
+    type = "bar",
+    color = ~factor(year),
+    barmode = "group",
+    colors = "viridis"
+  ) %>%
+  layout(
+    title = "Number of Snowy Days by Month，Year",
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Number of Snowy Days"),
+    legend = list(title = list(text = "Year"))
+  )
+```
+
